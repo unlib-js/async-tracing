@@ -18,7 +18,7 @@ export default tseslint.config(
         indent: 2,
         quotes: 'single',
         semi: false,
-        braceStyle: 'allman',
+        braceStyle: '1tbs',
         quoteProps: 'as-needed',
       }),
     ],
