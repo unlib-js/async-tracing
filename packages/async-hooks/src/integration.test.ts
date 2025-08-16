@@ -35,17 +35,12 @@ describe('Tracer', () => {
       tracer1.run(testCaseAlternativeNesting),
     ])
     await setTimeout(1000)
-    console.debug('=====',
-      tracer0.rootAsyncId, tracer0.stacks.values().next(),
-      tracer1.rootAsyncId, tracer1.stacks.values().next(),
-    )
     const frames0 = [...tracer0.stacks.values()]
     expect(frames0.find(frame =>
       frame.stack.includes('triggerBadFunction')
       || frame.stack.includes('badAsyncFunction'))).toBeTruthy()
     expect(frames0.find(frame =>
       frame.stack.includes('goodAsyncFunction'))).toBeFalsy()
-    // FIXME: This is failing
     expect(frames0.find(frame =>
       frame.stack.includes('intermediateOperation')
       || frame.stack.includes('slowAsyncOperation')
