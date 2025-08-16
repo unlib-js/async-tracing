@@ -47,10 +47,10 @@ export default class Tracer {
    */
   public async run<T>(job: () => Promise<T>) {
     this.registry.add(this)
+    this.hook.enable()
     await Promise.resolve()
     this.rootAsyncId = executionAsyncId()
     this.parents.add(this.rootAsyncId)
-    this.hook.enable()
     try {
       return await job()
     } finally {
